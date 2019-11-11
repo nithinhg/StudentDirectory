@@ -1,0 +1,8 @@
+1. Steps to run application Student Directory:
+
+java -jar target/StudentDirectory-0.0.1-SNAPSHOT.jar
+
+2. Steps to compile and build Student Directory app:
+
+a. Import project as maven project in eclipse
+b. Run -> Maven build with clean install goal
