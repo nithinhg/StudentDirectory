@@ -42,6 +42,41 @@ public class Array
         return false;
     }
 
+    public static void quickSort(int[] arr,int low, int high)
+    {
+        if(low >= high)
+        {
+            return;
+        }
+        int pivotIndex = partition(arr,low,high);
+
+        quickSort(arr,low,pivotIndex-1);
+        quickSort(arr,pivotIndex+1,high);
+    }
+
+    public static int partition(int[] arr,int low, int high)
+    {
+        int pivot = arr[high];
+        int i = low;
+
+        for(int j=low;j<high;j++)
+        {
+            if(arr[j]<pivot)
+            {
+                int temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+                i++;
+            }
+        }
+
+        int temp = arr[i];
+        arr[i] = arr[high];
+        arr[high] = temp;
+
+        return i;
+    }
+
     public static int maxArea(int[] height) {
         //mininum of 2 integers = min
         //difference between 2 indices = diff 
@@ -117,7 +152,7 @@ public class Array
 
     public static void main(String str[])
     {
-        int[] array = {1,8,6,2,5,4,8,3,7};
+        int[] array = {1,8,6,2,5,4,9,3,7};
 
         //Linear Search
         System.out.println("Item found in an array = "+linearSearch(8,array));
@@ -127,6 +162,16 @@ public class Array
         //Binary Search
         System.out.println("Item found in an array = "+binarySearch(8,array));
         System.out.println("Item found in an array = "+binarySearch(0,array));
+        System.out.println();
+
+        //Quick Sort
+        quickSort(array,0,8);
+        System.out.println("Quick Sorted Array is ...");
+        for(int i:array)
+        {
+            System.out.print(i+" ");
+        }
+        System.out.println();
         System.out.println();
 
         // MAX volume of water
