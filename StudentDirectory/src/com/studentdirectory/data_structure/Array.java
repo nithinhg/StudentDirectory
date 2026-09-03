@@ -3,7 +3,45 @@ import java.util.Arrays;
 
 public class Array
 {
-    // MAX volume of water
+    public static boolean linearSearch(int item,int[] arr)
+    {
+        for(int i:arr)
+        {
+            if(i==item)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean binarySearch(int item,int[] arr)
+    {
+        //1,2,3,4,5
+        Arrays.sort(arr);
+        int left = 0;
+        int right = arr.length-1;
+        int mid;
+
+        while(left < right)
+        {
+            mid = left + (right-left)/2;
+            if (arr[mid] == item)
+            {
+                return true;
+            }
+            if (item < arr[mid])
+            {
+                right=mid-1;
+            }
+            else
+            {
+                left=mid+1;
+            }
+        }
+        return false;
+    }
+
     public static int maxArea(int[] height) {
         //mininum of 2 integers = min
         //difference between 2 indices = diff 
@@ -11,9 +49,9 @@ public class Array
         //Keep track of volume of water in every iteration and compare with new diff
         int left = 0;
         int right = height.length-1;
-        int minimum = 1000000;
-        int diff = 0;
-        int maxWaterVolume = 0;
+        int minimum;
+        int diff;
+        int maxWaterVolume;
         int max = 0;
         while (left<right)
         {
@@ -38,7 +76,6 @@ public class Array
         return max;
     }
 
-    //Earliest Moment When Everyone Become Friends
     public static int earliestAcq(int[][] logs, int n) {
         Arrays.sort(logs, (a, b) -> Integer.compare(a[0], b[0]));
         int count = n;
@@ -60,6 +97,8 @@ public class Array
         }
         return -1;
     }
+
+
     public static int[][] update(int[][] logs,int person1, int person2)
     {
         for(int[] log:logs)
@@ -78,9 +117,23 @@ public class Array
 
     public static void main(String str[])
     {
-        int[] waterArray = {1,8,6,2,5,4,8,3,7};
-        System.out.println("Maximum wanter volume = "+maxArea(waterArray));
+        int[] array = {1,8,6,2,5,4,8,3,7};
 
+        //Linear Search
+        System.out.println("Item found in an array = "+linearSearch(8,array));
+        System.out.println("Item found in an array = "+linearSearch(0,array));
+        System.out.println();
+
+        //Binary Search
+        System.out.println("Item found in an array = "+binarySearch(8,array));
+        System.out.println("Item found in an array = "+binarySearch(0,array));
+        System.out.println();
+
+        // MAX volume of water
+        System.out.println("Maximum wanter volume = "+maxArea(array));
+        System.out.println();
+
+        //Earliest Moment When Everyone Become Friends
         int[][] matrix = {
             {1, 0, 1},
             {2, 1, 2},
@@ -88,5 +141,6 @@ public class Array
             {4, 2, 3}
         };
         System.out.println("Earliest Time Everyone Became Friends = "+earliestAcq(matrix,4));
+        System.out.println();
     }
 }
