@@ -1,7 +1,8 @@
 package com.studentdirectory.data_structure;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List; 
+import java.util.List;
+import java.util.ArrayList; 
+import java.util.HashMap;
 
 public class Array
 {
@@ -187,6 +188,26 @@ public class Array
     return result;
     }
 
+    public static int[] twoSum(int[] nums, int target) {
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+        int complement;
+        int[] result = new int[2];
+        for(int i=0;i<nums.length;i++)
+        {
+            complement = target - nums[i];
+            if(map.containsKey(complement))
+            {
+                result[0] = map.get(complement);
+                result[1] = i;
+            }
+            else
+            {
+                map.put(nums[i],i);
+            }
+        }
+        return result;
+    }
+
     public static void main(String str[])
     {
         // int[] array = {1,8,6,2,5,4,9,3,7};
@@ -226,21 +247,27 @@ public class Array
         // System.out.println();
 
 
-        //Merge and Sort Intervals
-        //Input
-        //intervals = [[1, 3], [2, 6], [8, 10], [15, 18]]
-        //Output
-        //[[1, 6], [8, 10], [15, 18]]
-        List<List<Integer>> intervals = new ArrayList<>(
-        Arrays.asList(
-            Arrays.asList(1, 3),
-            Arrays.asList(2, 6),
-            Arrays.asList(8, 10),
-            Arrays.asList(15, 18)
-        ));
-        List<List<Integer>> result = mergeHighDefinitionIntervals(intervals);
-        for (List<Integer> row : result) {
-            System.out.println(row);
+        // //Merge and Sort Intervals
+        // //Input
+        // //intervals = [[1, 3], [2, 6], [8, 10], [15, 18]]
+        // //Output
+        // //[[1, 6], [8, 10], [15, 18]]
+        // List<List<Integer>> intervals = new ArrayList<>(
+        // Arrays.asList(
+        //     Arrays.asList(1, 3),
+        //     Arrays.asList(2, 6),
+        //     Arrays.asList(8, 10),
+        //     Arrays.asList(15, 18)
+        // ));
+        // List<List<Integer>> result = mergeHighDefinitionIntervals(intervals);
+        // for (List<Integer> row : result) {
+        //     System.out.println(row);
+        // }
+
+        int[] arr = new int[]{2,7,11,15};
+        int[] results = twoSum(arr,9);
+        for (int i : results) {
+            System.out.println(i);
         }
     }
 }
